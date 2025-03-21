@@ -25,10 +25,13 @@ int find_next_dividend_position(vector <int> input, int i){
         cout << "cannot divide by 0" << endl;
     }
     for(size_t j = i; j < input.size(); j++){
-        int num = input[i];
+        int num = input[i-1];
         if(input[j] % num == 0){
             //find_Idx.push_back(j);
             return j;
+        }
+        else{
+            return -1;
         }
     }
     return -1;
@@ -67,18 +70,20 @@ vector<int> bdc_helper(vector<int> input){
         return input;
     }
     vector<int> L;
+    L.push_back(input[0]);
+    //LVal.push_back(input[0]);
     for (size_t i = 0; i < input.size() - 1; i++){
-        L.push_back(input[i]);
         int j = find_next_dividend_position(input, i+1);
+        if(j==-1){continue;}
         vector <int> Rin = sub_vec(input, j);
         vector <int> R = bdc_helper(Rin);
         vector <int> cand_v = combine(L, R);
-        cout << "L: " << vec_to_string(L) <<endl;
-        cout << "j: " << j <<endl;
-        cout << "Rin: " << vec_to_string(Rin) <<endl;
-        cout << "R: " << vec_to_string(R) <<endl;
-        cout << "cand_V: " << vec_to_string(cand_v) <<endl;
+        cout << "result: " << vec_to_string(cand_v) <<endl;
         candidates.push_back(cand_v);
+        //cout << "L: " << vec_to_string(L) <<endl;
+        //cout << "j: " << j <<endl;
+        //cout << "Rin: " << vec_to_string(Rin) <<endl;
+        //cout << "R: " << vec_to_string(R) <<endl;
     }
     return longest_vector(candidates);
 }
