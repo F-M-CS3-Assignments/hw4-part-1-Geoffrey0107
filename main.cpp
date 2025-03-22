@@ -15,6 +15,7 @@ int main() {
 	cout << "input: " << vec_to_string(values) << endl;
 	cout << "output: " << vec_to_string(ans) << endl << endl;
 	set<int> answerSet(ans.begin(), ans.end());
+	cout << "answerset: " << vec_to_string(ans) << endl;
 	set<int> soln = {56, 14, 7, 28};
 	bool first = (answerSet == soln);
 	soln = {56, 28, 14, 2};
