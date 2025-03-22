@@ -24,9 +24,11 @@ int find_next_dividend_position(vector <int> input, int i){
         cout << "cannot divide by 0" << endl;
     }
     int num = input[i-1];
-    for(size_t j = i; j < input.size(); j++){
-        if(input[j] % num == 0){
-            return j;
+    if(num != 0){
+        for(size_t j = i; j < input.size(); j++){
+            if(input[j] % num == 0){
+                return j;
+            }
         }
     }
     return -1;
