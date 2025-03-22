@@ -40,11 +40,21 @@ vector <int> sub_vec(vector <int> input, size_t j){
     return result;
 }
 
-vector<int> combine(vector<int> L, vector <int> R){
-    for (int x : R) {
-        L.push_back(x);
+vector<int> combine(const vector<int> &L, const vector<int> &R){
+
+    if(R.size() > 0 && R.at(0) % L.at(0) != 0){
+        return L;
     }
-    return L;
+
+    vector<int> output;
+    for(size_t i = 0; i < L.size(); i++){
+        output.push_back(L.at(i));
+    }
+
+    for(size_t i = 0; i <R.size(); i++){
+        output.push_back(R.at(i));
+    }
+    return output;
 }
 
 vector<int> longest_vector(vector<vector<int>> candidates){
@@ -73,7 +83,6 @@ vector<int> bdc_helper(vector<int> input){
         vector <int> Rin = sub_vec(input, j);
         vector <int> R = bdc_helper(Rin);
         vector <int> cand_v = combine(L, R);
-        cout << "candidates" << vec_to_string(cand_v) << endl;
         candidates.push_back(cand_v);
     }
     return longest_vector(candidates);
